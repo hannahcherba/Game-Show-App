@@ -148,32 +148,26 @@ Each time the player guesses a letter, this function will check whether the game
         button[i].addEventListener('click', () => {
              
             //when button chosen add 'chosen' class to that button
-            //button elements with 'chosen' class should be disables and set to true
+            //button elements with 'chosen' class should be disabled and set to true
             
             button[i].className = "chosen";
             document.getElementsByClassName("chosen").disabled = true;
-
-            //letter class added in addPhraseToDisplay(arr) function (moved from checkLetter function)
+            
            
             let letterFound = document.getElementsByClassName('chosen'); //pass to checkLetter function
 
                 function checkLetter(btnClicked) {
-
+                    let letterMatch= null;
                     let letter = document.getElementsByClassName('letter'); 
                     
                     for (let i=0; i < letter.length; i++){
 
-                        if (btnClicked === letter[i]) {
+                        if (btnClicked.textContent === letter[i].textContent) {
 
-                            li.className += " show";
-                            let letterMatch = document.getElementsByClassName('show');
+                            letterMatch= letter[i];
+                            letterMatch.classList.add('show');
                             return letterMatch;
-
-                        } else {
-
-                            return null;
                         }
-                    }
                     
                     //loop through letter variable to see if match
                     //'if' match, add the 'show' class to list item containing that letter
@@ -181,9 +175,12 @@ Each time the player guesses a letter, this function will check whether the game
                     //'else' function returns null
                     
                     //Return function
-                   
+                    return letterMatch;
+                    };
                 };
-               console.log(checkLetter(letterFound));
+               checkLetter(letterFound);
+
+
                 // if (letterFound === null)   {
 
                     //remove one of the tries from the scoreboard
