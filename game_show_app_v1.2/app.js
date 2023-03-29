@@ -146,33 +146,57 @@ Each time the player guesses a letter, this function will check whether the game
    for (let i = 0; i < button.length; i++) {
 
         button[i].addEventListener('click', () => {
+             
+            //when button chosen add 'chosen' class to that button
+            //button elements with 'chosen' class should be disables and set to true
             
             button[i].className = "chosen";
             document.getElementsByClassName("chosen").disabled = true;
 
-            // let letter = document.getElementsByClassName('letter'); //letter class added in addPhraseToDisplay(arr) function (moved from checkLetter function)
-            //when letter chosen add 'chosen' class to that button
-            //button elements with 'chosen' class should be disables and set to true
-            // let letterFound = document.getElementsByClassName('chosen'); //pass to checkLetter function
-            //     function checkLetter(btnClicked) {
+            //letter class added in addPhraseToDisplay(arr) function (moved from checkLetter function)
+           
+            let letterFound = document.getElementsByClassName('chosen'); //pass to checkLetter function
+
+                function checkLetter(btnClicked) {
+
+                    let letter = document.getElementsByClassName('letter'); 
                     
-        //             for (i=0; i>1; i++){} //loop through letter variable to see if match
-        //             //'if' match, add the 'show' class to list item containing that letter
-        //             //store the matching letter inside a variable, and return that letter
-        //             //'else' function returns null
+                    for (let i=0; i < letter.length; i++){
+
+                        if (btnClicked === letter[i]) {
+
+                            li.className += " show";
+                            let letterMatch = document.getElementsByClassName('show');
+                            return letterMatch;
+
+                        } else {
+
+                            return null;
+                        }
+                    }
                     
-        //             //Return function
-        //         };
-        //         if (letterFound === null)   {
-        //             //remove one of the tries from the scoreboard
-        //             //make sure to increase the missed count by 1
-        //             //change a liveHeart.png to a lostHeartpng image
-        //         } 
-        //         const checkWin = () => {
-        //             //each (for each statement?) time the player guesses letter check whether game won or lost
-        //             //check 'if' the number of letters with class 'show' is equal to the number of letters with class 'letters'
-        //             //'if' equal, show overlay screen with the class 'win'
-        //             // 'else if' ('number of misses >= 5) show the overlay with the screen with the class 'lose'
+                    //loop through letter variable to see if match
+                    //'if' match, add the 'show' class to list item containing that letter
+                    //store the matching letter inside a variable, and return that letter
+                    //'else' function returns null
+                    
+                    //Return function
+                   
+                };
+               console.log(checkLetter(letterFound));
+                // if (letterFound === null)   {
+
+                    //remove one of the tries from the scoreboard
+                    //make sure to increase the missed count by 1
+                    //change a liveHeart.png to a lostHeartpng image
+
+                // } 
+                // const checkWin = () => {
+
+                    //each (for each statement?) time the player guesses letter check whether game won or lost
+                    //check 'if' the number of letters with class 'show' is equal to the number of letters with class 'letters'
+                    //'if' equal, show overlay screen with the class 'win'
+                    // 'else if' ('number of misses >= 5) show the overlay with the screen with the class 'lose'
 
                 // };
 
