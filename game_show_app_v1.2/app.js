@@ -1,22 +1,10 @@
-// Get the element with the ID of qwerty and save it to a variable.
-
 let qwerty = document.getElementById('qwerty');
-
-// Get the element with the ID of phrase and save it to a variable.
 
 let phrase = document.getElementById('phrase');
 
-// Create a missed variable, initialized to 0, that you’ll use later to keep track of the number of guesses 
-//the player has missed (remember, if the player guesses wrong 5 times, they lose the game) (**i.e. check)
-
 let missed = 0;
 
-//Get the element with the class of btn_reset and save it to the variable startButton.
-
 let startButton = document.getElementsByClassName('btn__reset');
-
-/*Create a phrases array that contains at least 5 different phrases as strings.
-Make sure that each phrase contains only letters and spaces, so players won’t need to guess punctuation or special characters.*/
 
 const phrases= [
     "total depravity",
@@ -30,8 +18,6 @@ const phrases= [
      "sola fide",
      "soli deo gloria",
     ];
-
-//Attach an event listener to the “Start Game” button to hide the start screen overlay.
 
 startButton[0].addEventListener('click', e => {
     if (startButton) {
@@ -51,8 +37,6 @@ then return the new character array. Keep in mind that you’ll need to write th
     let chars = phrase.split("");
     return chars;
  };
-
-//  getRandomPhraseAsArray(phrases);
 
  /* Set the game display.
  =========================
@@ -83,25 +67,10 @@ const addPhraseToDisplay = (arr) => {
         }
 
     })
-    
-    /*for loop to loop through an array of characters
-    * for each character in the array in the loop:
-     -create list item (li) 
-     -put character in each list item
-     -append list item to #phrase ul in html
-     -(if the character is a letter, not a space, function
-        should add class "letter" to the li item, otherwise,
-        class 'space') */
-   
 
 };
 
-//To use the function, you’ll get the value returned by the getRandomPhraseAsArray, save it to a variable, and pass it to addPhraseToDisplay as an argument:
-
-
 addPhraseToDisplay(phraseArray); 
-
-
 
 /*Add an event listener to the keyboard.
 ========================================
@@ -142,52 +111,56 @@ Each time the player guesses a letter, this function will check whether the game
   show the overlay screen with the “win” class and appropriate text. Otherwise, if the number of misses
    is equal to or greater than 5, show the overlay screen with the “lose” class and appropriate text. */
 
-   let button = document.querySelectorAll('button');
-   for (let i = 0; i < button.length; i++) {
+   let buttons = document.querySelectorAll('button');
+  
+   for (let i = 0; i < buttons.length; i++) {
 
-        button[i].addEventListener('click', () => {
-             
-            //when button chosen add 'chosen' class to that button
-            //button elements with 'chosen' class should be disabled and set to true
+        buttons[i].addEventListener('click', event => {
             
-            button[i].className = "chosen";
-            document.getElementsByClassName("chosen").disabled = true;
+            buttons[i].className = "chosen";
+            buttons[i].disabled = true;
             
            
-            let letterFound = document.getElementsByClassName('chosen'); //pass to checkLetter function
+            let letterFound = buttons[i]; 
 
-                function checkLetter(btnClicked) {
-                    let letterMatch= null;
-                    let letter = document.getElementsByClassName('letter'); 
-                    
-                    for (let i=0; i < letter.length; i++){
-
-                        if (btnClicked.textContent === letter[i].textContent) {
-
-                            letterMatch= letter[i];
-                            letterMatch.classList.add('show');
-                            return letterMatch;
-                        }
-                    
-                    //loop through letter variable to see if match
-                    //'if' match, add the 'show' class to list item containing that letter
-                    //store the matching letter inside a variable, and return that letter
-                    //'else' function returns null
-                    
-                    //Return function
-                    return letterMatch;
-                    };
+            function checkLetter(btnClicked) {
+                let letterMatch= null;
+                let letter = document.getElementsByClassName('letter'); 
+                
+                for (let i=0; i < letter.length; i++){
+    
+                    if (btnClicked.textContent === letter[i].textContent) {
+    
+                        letterMatch= letter[i];
+                        letterMatch.classList.add('show');
+                    } 
+                
                 };
-               checkLetter(letterFound);
+               
+            };
 
+            checkLetter(letterFound);
 
-                // if (letterFound === null)   {
+            let missed = 0;
+            button= event.target;
+            letterFound = checkLetter(button);
+                
+            let heartImg = document.querySelectorAll("img").src;
+                
 
-                    //remove one of the tries from the scoreboard
-                    //make sure to increase the missed count by 1
-                    //change a liveHeart.png to a lostHeartpng image
+            if (letterFound === null)   {
 
-                // } 
+                heartImg[missed].src= "images/lostHeart.png";
+                missed ++
+            
+            }
+            //remove one of the tries from the scoreboard
+            //make sure to increase the missed count by 1
+            //change a liveHeart.png to a lostHeartpng image
+        
+
+            
+                    
                 // const checkWin = () => {
 
                     //each (for each statement?) time the player guesses letter check whether game won or lost
@@ -198,4 +171,5 @@ Each time the player guesses a letter, this function will check whether the game
                 // };
 
         })
+        
 }
