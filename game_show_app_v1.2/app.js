@@ -4,7 +4,7 @@ let phrase = document.getElementById('phrase');
 
 let missed = 0;
 
-let startButton = document.getElementsByClassName('btn__reset');
+let startButton = document.getElementById('start-btn');
 
 let overlay = document.getElementById('overlay');
 
@@ -21,7 +21,7 @@ const phrases= [
      "soli deo gloria",
     ];
 
-startButton[0].addEventListener('click', e => {
+startButton.addEventListener('click', e => {
     if (startButton) {
         overlay.style.display = 'none';
     }
@@ -114,7 +114,8 @@ Each time the player guesses a letter, this function will check whether the game
    is equal to or greater than 5, show the overlay screen with the “lose” class and appropriate text. */
 
 let buttons = document.querySelectorAll('button');
-  
+
+function theGame() {  
 for (let i = 0; i < buttons.length; i++) {
 
     buttons[i].addEventListener('click', event => {
@@ -161,24 +162,56 @@ for (let i = 0; i < buttons.length; i++) {
             let h3Win = document.getElementById('h3-win');
             let h3Lose = document.getElementById('h3-lose');
             
+            
             if (lettersShown.length === letter.length) {
 
                 overlay.classList.add('win');
                 overlay.style.display= 'flex';
                 h3Win.style.display= 'flex';
                 startButtonText.innerHTML="Play again!"
-
+                
             } else if (missed >= 5) {
             
                 overlay.classList.add('lose');
                 overlay.style.display= 'flex';
                 h3Lose.style.display= 'flex';
                 startButtonText.innerHTML="Try again!"
+                
         
             }
+
         }
         checkWin();
 
     })
     
+}
+}
+theGame();
+
+let resetButton= document.getElementsByClassName('btn-reset'); //when I use this instead of startButton it throws an error in console
+
+startButton.addEventListener('click', e => {
+
+        if (startButton) {
+
+            overlay.style.display= 'none';
+            
+        }
+
+    })
+
+
+function resetGame() {
+
+    for (i=0; i< buttons.length; i++) {
+
+        buttons[i].classList.remove('chosen');
+
+    }
+
+    missed = 0;
+
+    theGame();
+
 }
