@@ -101,8 +101,11 @@ button {
 .show {
   color: whitesmoke;
   background-color: #60b198;
-  transition: all .5s ease-in-out;
-
+  transition: all .75s cubic-bezier(0.68, -0.55, 0.265, 1.55 );
+  transform: scale(1.1);
+  margin-bottom: 8px;
+  margin-left: 3px;
+  margin-right: 5px;
 }
 
 /* Keyboard */
@@ -129,7 +132,7 @@ button {
 
 /* Overlay */
 
-#overlay, h3 {
+#overlay {
   display: flex;
   flex-direction: column;
   position: fixed;
@@ -141,8 +144,10 @@ button {
   right: 0;
   border-radius: 5px;
 }
+
 h3 {
   display: none;
+  justify-content: center;
   margin-bottom: 50px;
   font-size: 25px;
 }

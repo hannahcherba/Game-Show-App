@@ -50,10 +50,12 @@ You’ll need to write the addPhraseToDisplay function so that it can take any a
 and add it to the display. To do that, the function will need to take an array as a parameter */
 
 const phraseArray = getRandomPhraseAsArray(phrases);
+let ul = document.getElementById('phrase');
+ 
 
 const addPhraseToDisplay = (arr) => {
 
-    let ul = document.getElementById('phrase');
+    // let ul = document.getElementById('phrase');
  
     phraseArray.forEach((item)=>{
 
@@ -112,7 +114,8 @@ Each time the player guesses a letter, this function will check whether the game
  letters with class “show” is equal to the number of letters with class “letters”. If they’re equal,
   show the overlay screen with the “win” class and appropriate text. Otherwise, if the number of misses
    is equal to or greater than 5, show the overlay screen with the “lose” class and appropriate text. */
-
+   
+let heartImg = document.querySelectorAll("img");
 let buttons = document.querySelectorAll('button');
 
 function theGame() {  
@@ -145,7 +148,7 @@ for (let i = 0; i < buttons.length; i++) {
         const button= event.target;
         const letterFound = checkLetter(button);
             
-        let heartImg = document.querySelectorAll("img");
+        // let heartImg = document.querySelectorAll("img");
             
 
         if (letterFound === null)   {
@@ -170,13 +173,13 @@ for (let i = 0; i < buttons.length; i++) {
                 h3Win.style.display= 'flex';
                 startButtonText.innerHTML="Play again!"
                 
+                
             } else if (missed >= 5) {
             
                 overlay.classList.add('lose');
                 overlay.style.display= 'flex';
                 h3Lose.style.display= 'flex';
                 startButtonText.innerHTML="Try again!"
-                
         
             }
 
@@ -189,27 +192,48 @@ for (let i = 0; i < buttons.length; i++) {
 }
 theGame();
 
+// Add a button to the “success” and “failure” screens that reset the game.
+//  You’ll have to recreate the buttons in the keyboard, generate a new random 
+//  phrase, and set the number of misses to zero.
+
 function resetGame() {
+
+    let letters = document.getElementsByTagName('li'); 
 
     for (i=0; i< buttons.length; i++) {
 
+        missed= 0;
+        ul.innerHTML=''; //called earlier outside my addPhraseToDisplay()
+        buttons[i].disabled = false;
         buttons[i].classList.remove('chosen');
 
+        for (i=0; i< heartImg.length; i++){
+
+        heartImg[i][missed].src= "images/liveHeart.png";
+        missed ++
+
+        }
+
+    } 
+    for (i=0; i< letters.length; i++){
+
+        letters[i].classList.remove('show');
     }
 
-    missed = 0;
+    phraseArray; 
+    addPhraseToDisplay(phraseArray); 
 
 }
-resetGame();
 
-let resetButton= document.querySelectorAll('.btn-reset'); //when I use this instead of startButton it throws an error in console
-console.log(resetButton);
+let resetButton= document.querySelectorAll('.btn-reset'); 
 
 for (i=0; i< resetButton.length; i++){
 
 resetButton[i].addEventListener('click', e => {
 
         if (resetButton) {
+
+            resetGame()
 
             overlay.style.display= 'none';
             
