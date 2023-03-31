@@ -1,5 +1,6 @@
 /* Main styles */
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700&Roboto:300');
+/* @import url('https://fonts.googleapis.com/css?family=Open+Sans:400,700&Roboto:300'); */
+@import url('https://fonts.googleapis.com/css2?family=Sora:wght@400;500&display=swap');
 
 /* Variables */
 
@@ -13,6 +14,7 @@
   --color-keys-light: #E5E5E5;
   --font-size-large: 60px;
   --font-size-medium: 20px;
+  --font-size-larger-medium: 30px;
   --transition: all .2s ease-in-out;
 }
 
@@ -27,6 +29,7 @@ body {
   flex-direction: column;
   display: flex;
   height: 100vh;
+  font-family: 'sora','Open Sans', sans-serif;
 }
 
 li, ol, ul {
@@ -37,7 +40,7 @@ li, ol, ul {
 h2 {
   margin: 0;
   text-transform: uppercase;
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'sora','Open Sans', sans-serif;
   font-size: var(--font-size-large);
   margin: 0;
 }
@@ -53,6 +56,7 @@ button {
   -webkit-transition: var(--transition);
   -o-transition: var(--transition);
   transition: var(--transition);
+  font-family: 'sora','Open Sans', sans-serif;
 }
 
 .main-container {
@@ -78,15 +82,16 @@ button {
 /* Phrase */
 
 .letter {
-  font-size: var(--font-size-medium);
+  font-size: var(--font-size-larger-medium);
   height: 65px;
   width: 65px;
-  padding: 20px 1px 0 1px;
+  padding: 15px 5px;
   margin-right: 2px;
   color: transparent;
   background: var(--color-neutral-light);
   border-radius: 5px;
   margin-bottom: 5px;
+  font-family: 'sora','Open Sans', sans-serif;
 }
 
 .space {
@@ -94,8 +99,10 @@ button {
 }
 
 .show {
-  color: #000;
-  background-color: #76CE82;
+  color: whitesmoke;
+  background-color: #60b198;
+  transition: all .5s ease-in-out;
+
 }
 
 /* Keyboard */

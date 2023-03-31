@@ -189,19 +189,6 @@ for (let i = 0; i < buttons.length; i++) {
 }
 theGame();
 
-let resetButton= document.getElementsByClassName('btn-reset'); //when I use this instead of startButton it throws an error in console
-
-startButton.addEventListener('click', e => {
-
-        if (startButton) {
-
-            overlay.style.display= 'none';
-            
-        }
-
-    })
-
-
 function resetGame() {
 
     for (i=0; i< buttons.length; i++) {
@@ -212,6 +199,21 @@ function resetGame() {
 
     missed = 0;
 
-    theGame();
+}
+resetGame();
 
+let resetButton= document.querySelectorAll('.btn-reset'); //when I use this instead of startButton it throws an error in console
+console.log(resetButton);
+
+for (i=0; i< resetButton.length; i++){
+
+resetButton[i].addEventListener('click', e => {
+
+        if (resetButton) {
+
+            overlay.style.display= 'none';
+            
+        }
+
+    })
 }
