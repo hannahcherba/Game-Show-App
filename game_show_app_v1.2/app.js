@@ -54,8 +54,6 @@ let ul = document.getElementById('phrase');
  
 
 const addPhraseToDisplay = (arr) => {
-
-    // let ul = document.getElementById('phrase');
  
     phraseArray.forEach((item)=>{
 
@@ -118,7 +116,7 @@ Each time the player guesses a letter, this function will check whether the game
 let heartImg = document.querySelectorAll("img");
 let buttons = document.querySelectorAll('button');
 
-function theGame() {  
+
 for (let i = 0; i < buttons.length; i++) {
 
     buttons[i].addEventListener('click', event => {
@@ -189,8 +187,6 @@ for (let i = 0; i < buttons.length; i++) {
     })
     
 }
-}
-theGame();
 
 // Add a button to the “success” and “failure” screens that reset the game.
 //  You’ll have to recreate the buttons in the keyboard, generate a new random 
@@ -200,22 +196,23 @@ function resetGame() {
 
     let letters = document.getElementsByTagName('li'); 
 
-    for (i=0; i< buttons.length; i++) {
+    if(heartImg.src !== "images/lostHeart.png"){
+
+        for (let i=0; i< heartImg.length; i++){
+
+            heartImg[i].src= "images/liveHeart.png";
+            
+        }    
+    }
+    for (let i=0; i< buttons.length; i++) {
 
         missed= 0;
         ul.innerHTML=''; //called earlier outside my addPhraseToDisplay()
         buttons[i].disabled = false;
         buttons[i].classList.remove('chosen');
-
-        for (i=0; i< heartImg.length; i++){
-
-        heartImg[i][missed].src= "images/liveHeart.png";
-        missed ++
-
-        }
-
     } 
-    for (i=0; i< letters.length; i++){
+
+    for (let i=0; i< letters.length; i++){
 
         letters[i].classList.remove('show');
     }
@@ -227,7 +224,7 @@ function resetGame() {
 
 let resetButton= document.querySelectorAll('.btn-reset'); 
 
-for (i=0; i< resetButton.length; i++){
+for (let i=0; i< resetButton.length; i++){
 
 resetButton[i].addEventListener('click', e => {
 
